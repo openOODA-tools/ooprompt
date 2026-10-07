@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooprompt-bin
+_pkgname=ooprompt
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Reactive multi-segment shell prompt rendering git posture, capability level, and latency."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooprompt"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooprompt')
+conflicts=('ooprompt')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooprompt-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooprompt-linux-x86_64" "${pkgdir}/usr/bin/ooprompt"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooprompt-uninstall"
+}
